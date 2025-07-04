@@ -3,6 +3,10 @@ import './App.css'
 import Header from './components/header/Header';
 import Home from './components/home/Home';
 import About from './components/about/About';
+import Skills from './components/skills/Skills';
+import Experiance from './components/experience/Experiance';
+
+
 
 function App() {
 
@@ -12,6 +16,8 @@ function App() {
       <main className='main'>
         <Home />
         <About />
+        <Skills />
+        <Experiance />
       </main>
     </>
   )
