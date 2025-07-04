@@ -7,7 +7,7 @@ const Data = () => {
                 <img src="src\assets\hand.svg" className="home__hand" />
             </h1>
             <h3 className="home__subtitle">Software Developer</h3>
-            <p className="home__description">I'm a Software Developer and Creative Designer based in Dharmapuri, Tamil Nadu, passionate about crafting beautiful, user-friendly digital experiences. I combine design sensibility with coding expertise to build seamless and functional web applications, delivering both frontend aesthetics and backend efficiency.
+            <p className="home__description">I'm a Software Developer and Creative Designer based in Dharmapuri, Tamil Nadu, passionate about crafting beautiful, user-friendly digital experiences.
             </p>
             <a href="#contact" className="button button--flex">
                 Say Hello

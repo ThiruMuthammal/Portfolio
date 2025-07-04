@@ -89,12 +89,12 @@
     fill: none;
     stroke: var(--title-color);
     stroke-width: 20px;
-    background-color: var(--container-color);
+    /* background-color: var(--container-color); */
 }
 
-.home__scroll:hover {
+/* .home__scroll:hover {
     background-color: var(--container-color);
-}
+} */
 
 @keyframes profile__animate {
     0% {
