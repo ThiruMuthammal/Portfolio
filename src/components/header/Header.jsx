@@ -20,20 +20,20 @@ const Header = () => {
                         <li className="nav__item">
                             <a href="#about" className="nav__link">
                                 <i className="uil uil-user nav__icon"></i>
-                                About
+                                About Me
+                            </a>
+                        </li>
+                        <li className="nav__item">
+                            <a href="#experience" className="nav__link">
+                                <i className="uil uil-briefcase-alt nav__icon">
+                                </i>
+                                Experience
                             </a>
                         </li>
                         <li className="nav__item">
                             <a href="#skills" className="nav__link">
                                 <i className="uil uil-file-alt nav__icon"></i>
                                 Skills
-                            </a>
-                        </li>
-                        <li className="nav__item">
-                            <a href="#services" className="nav__link">
-                                <i className="uil uil-briefcase-alt nav__icon">
-                                </i>
-                                Services
                             </a>
                         </li>
                         <li className="nav__item">
@@ -46,12 +46,15 @@ const Header = () => {
                             <a href="#contact" className="nav__link">
                                 <i className="uil uil-message nav__icon">
                                 </i>
-                                Contact
+                                Contact Me
                             </a>
                         </li>
                     </ul>
                     <i class="uil uil-times nav__close" onClick={() => showMenu(!Toggle)}></i>
                 </div>
+                {/* <button className="theme__icon-button">
+                    <i class='bx bx-moon theme__icon'></i>
+                </button> */}
                 <div className="nav__toggle" onClick={() => showMenu(!Toggle)}>
                     <i class="uil uil-apps"></i>
                 </div>

@@ -4,8 +4,8 @@ import Header from './components/header/Header';
 import Home from './components/home/Home';
 import About from './components/about/About';
 import Skills from './components/skills/Skills';
-import Experiance from './components/experience/Experiance';
-
+import Experience from './components/experience/Experience';
+import Qualification from './components/qualification/Qualification';
 
 
 function App() {
@@ -13,12 +13,11 @@ function App() {
   return (
     <>
       <Header />
-      <main className='main'>
-        <Home />
-        <About />
-        <Skills />
-        <Experiance />
-      </main>
+      <Home />
+      <About />
+      <Experience />
+      <Qualification />
+      <Skills />
     </>
   )
 }

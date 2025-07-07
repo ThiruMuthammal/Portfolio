@@ -33,7 +33,7 @@
 
 .home__hand {
     width: 38px;
-    height: 38px;
+    height: 30px;
     margin-left: 0.4rem;
 }
 
@@ -96,6 +96,22 @@
     background-color: var(--container-color);
 } */
 
+@keyframes wave {
+    0% { transform: rotate(0deg); }
+    15% { transform: rotate(14deg); }
+    30% { transform: rotate(-8deg); }
+    45% { transform: rotate(14deg); }
+    60% { transform: rotate(-4deg); }
+    75% { transform: rotate(10deg); }
+    100% { transform: rotate(0deg); }
+}
+
+.home__hand {
+    animation: wave 2s ease-in-out infinite;
+    transform-origin: 70% 70%; 
+}
+
+
 @keyframes profile__animate {
     0% {
         border-radius: 80% 50% 40% 80%/70% 40% 80% 50%;
@@ -109,7 +125,6 @@
         border-radius: 80% 50% 40% 80%/70% 40% 80% 50%;
     }
 }
-
 .wheel {
     animation: scroll 2s ease infinite;
 }
