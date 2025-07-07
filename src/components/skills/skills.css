@@ -1,4 +1,4 @@
-.skills__container {
+/* .skills__container {
     grid-template-columns: repeat(2, 350px);
     column-gap: 3rem;
     justify-content: center;
@@ -48,19 +48,20 @@
 
 .skills__level {
     font-size: var(--tiny-font-size);
-}
+} */
 
+  
 /*=============== BREAKPOINTS ===============*/
 /* For large devices */
-@media screen and (max-width: 992px) {
+/* @media screen and (max-width: 992px) {
     .skills__container {
         grid-template-columns: max-content;
         row-gap: 2rem;
     }
   }
-  
+   */
   /* For medium devices */
-  @media screen and (max-width: 576px) {
+  /* @media screen and (max-width: 576px) {
     .skills__container {
         grid-template-columns: 1fr;
     }
@@ -68,10 +69,10 @@
     .skills__content {
         padding: 1.5rem;
     }
-  }
+  } */
   
   /* For small devices */
-  @media screen and (max-width: 350px) {
+  /* @media screen and (max-width: 350px) {
     .skills__box {
         column-gap: 1.25rem;
     }
@@ -79,4 +80,70 @@
     .skills__name {
         font-size: var(--small-font-size);
     }
+  } */
+
+
+  .marquee-image {
+    position: relative; /* container for absolute positioning */
+    overflow: hidden;   /* hide anything outside */
+    width: 70px;        /* fix container width */
+    height: auto;
+    margin-right: 2rem;
+    flex-shrink: 0;
+    display: inline-block;
   }
+  
+  .marquee-image img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+    display: block;
+    position: relative;
+    z-index: 1;
+  }
+  
+  .marquee-image img:hover {
+    transform: scale(1.5);
+    /* cursor: pointer;        */
+  }
+  
+  @media screen and (min-width: 992px) {
+    .marquee-image img {
+      width: 100px;
+    }
+  
+    .marquee-image {
+      margin-right: 2.5rem;
+    }
+  }
+  
+  /* Medium Devices */
+  @media screen and (max-width: 768px) {
+    .marquee-image {
+      margin-right: 1.5rem;
+    }
+  
+    .marquee-image img {
+      width: 60px;
+    }
+  }
+  
+  /* Small Devices */
+  @media screen and (max-width: 576px) {
+    .marquee-image img {
+      width: 60px;
+    }
+  
+    .marquee-image {
+      margin-right: 1.25rem;
+    }
+  }
+  
+  /* Extra Small Devices */
+  @media screen and (max-width: 350px) {
+    .marquee-image img {
+      width: 40px;
+    }
+  }
+  
