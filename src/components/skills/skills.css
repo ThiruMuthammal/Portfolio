@@ -83,30 +83,51 @@
   } */
 
 
-  .marquee-image {
-    position: relative; /* container for absolute positioning */
-    overflow: hidden;   /* hide anything outside */
-    width: 70px;        /* fix container width */
-    height: auto;
-    margin-right: 2rem;
-    flex-shrink: 0;
-    display: inline-block;
-  }
-  
-  .marquee-image img {
-    width: 100%;
-    height: auto;
-    object-fit: contain;
-    transition: transform 0.3s ease;
-    display: block;
+  .image-tooltip-container {
     position: relative;
-    z-index: 1;
+    display: inline-block;
+    margin: 0 20px;
+    text-align: center;
   }
   
-  .marquee-image img:hover {
-    /* transform: scale(1.5); */
-    /* cursor: pointer;        */
+  .tech-image {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+    transition: transform 0.3s;
   }
+  
+  /* Optional hover zoom */
+  .image-tooltip-container:hover .tech-image {
+    transform: scale(1.1);
+  }
+  
+  /* Tooltip styles */
+/* Tooltip styles - centered inside image */
+.image-tooltip {
+  position: absolute;
+  top: 15%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: var(--body-color);
+  color: var(--title-color);
+  padding: 4px 10px;
+  font-size: var(--h2-font-size);
+  border-radius: 4px;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: visible;
+  transition: opacity 0.3s ease;
+  z-index: 2;
+}
+
+  
+  /* Show tooltip on hover */
+  .image-tooltip-container:hover .image-tooltip {
+    opacity: 1;
+    visibility: visible;
+  }
+  
   
   @media screen and (min-width: 992px) {
     .marquee-image img {

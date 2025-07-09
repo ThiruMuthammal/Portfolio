@@ -1,7 +1,22 @@
-import React from "react";
+import React, { useRef } from 'react';
+import emailjs from '@emailjs/browser';
 import "./contact.css";
 
 const Contact = () => {
+    const form = useRef();
+    const sendEmail = (e) => {
+        e.preventDefault();
+
+        emailjs
+            .sendForm('service_0mc6mwd',
+                'template_2w91x1z',
+                form.current, {
+                publicKey: 'Gccd10h2nhhy3TNaM',
+            })
+        e.target.reset()
+    };
+
+
     return (
         <section className="contact section" id="contact">
             <h3 className="section__title">Get in touch</h3>
@@ -18,8 +33,9 @@ const Contact = () => {
                             <h3 className="contact__card-title">Email</h3>
                             <span className="contact__card-data">user@gmail.com</span>
 
-                            <a href="mailto:examplemail@gmail.com.com" className="contact__button">Write me  {" "}<i
-                                className="bx bx-right-arrow-alt contact__button-icon"></i></a>
+                            <a href="https://mail.google.com/mail/u/0/#inbox" className="contact__button"
+                                target="_blank" rel="noopener noreferrer">Write me  {" "}<i
+                                    className="bx bx-right-arrow-alt contact__button-icon"></i></a>
                         </div>
 
                         <div className="contact__card">
@@ -28,8 +44,9 @@ const Contact = () => {
                             <h3 className="contact__card-title">Whatsapp</h3>
                             <span className="contact__card-data">999-888-7777</span>
 
-                            <a href="https://api.whatsapp.com/send?phone=7639833601&text=Hello, more information!" className="contact__button">Write me  {" "}<i
-                                className="bx bx-right-arrow-alt contact__button-icon"></i></a>
+                            <a href="https://api.whatsapp.com/send?phone=7639833601&text=Hello, more information!"
+                                className="contact__button" target="_blank" rel="noopener noreferrer">Write me  {" "}<i
+                                    className="bx bx-right-arrow-alt contact__button-icon"></i></a>
                         </div>
                         {/* <div className="contact__card">
                             <i className="bx bx contact__card-icon"></i>
@@ -45,7 +62,7 @@ const Contact = () => {
 
                 <div className="contact__content">
                     <h3 className="contact__title">Write me your project</h3>
-                    <form className="contact__form">
+                    <form ref={form} onSubmit={sendEmail} className="contact__form">
                         <div className="contact__form-div">
                             <label className="contact__form-tag">Name</label>
                             <input type="text" name="name"

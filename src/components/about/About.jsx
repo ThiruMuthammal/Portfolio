@@ -19,7 +19,7 @@ const About = () => {
                         real-world problems. I'm passionate about learning new technologies and building
                         full-stack solutions from UI to deployment.
                     </p>
-                    <a href={CV} className="button button--flex">Download CV
+                    <a href={CV} className="button button--flex" target="_blank" rel="noopener noreferrer">Download CV
                     </a>
 
                 </div>
