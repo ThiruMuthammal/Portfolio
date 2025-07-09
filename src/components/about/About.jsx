@@ -14,9 +14,10 @@ const About = () => {
                 <div className="about__data">
                     <Info />
                     <p className="about__description">
-                        Software Engineer with expertise in .NET and React.
-                        Skilled in building responsive and maintainable applications.
-                        Focused on delivering efficient, user-centered solutions.
+                        Full Stack Developer with experience in building web applications using React,
+                        .Net Core, SQL Server, and Azure. I enjoy creating clean, efficient code and solving
+                        real-world problems. I'm passionate about learning new technologies and building
+                        full-stack solutions from UI to deployment.
                     </p>
                     <a href={CV} className="button button--flex">Download CV
                     </a>

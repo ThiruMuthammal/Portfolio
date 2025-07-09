@@ -6,8 +6,8 @@ const Data = () => {
             <h1 className="home__title">Thirumoorthy M
                 <img src="src\assets\hand.svg" className="home__hand" />
             </h1>
-            <h3 className="home__subtitle">Software Developer</h3>
-            <p className="home__description">I'm a Software Developer and Creative Designer based in Dharmapuri, Tamil Nadu, passionate about crafting beautiful, user-friendly digital experiences.
+            <h3 className="home__subtitle">Full Stack Developer</h3>
+            <p className="home__description">I'm a passionate Full Stack Developer with experience in designing developing and deploying scalable web application using React, .Net Core, and SQL Server.
             </p>
             <a href="#contact" className="button button--flex">
                 Say Hello
