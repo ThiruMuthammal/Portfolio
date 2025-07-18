@@ -3,7 +3,7 @@ import React from "react";
 const Data = () => {
     return (
         <div className="home__data">
-            <h1 className="home__title">Thirumoorthy M
+            <h1 className="home__title">Thirumoorthy
                 {/* <img src={img1} className="home__hand" /> */}
                 <img src="/hand.svg" className="home__hand" />
 
