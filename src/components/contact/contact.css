@@ -107,6 +107,15 @@
     resize: none;
 }
 
+.contact__form-input.error {
+    border: 2px solid red;
+}
+
+.contact__form-tag.error {
+    color: red;
+}
+
+
 
 /*=============== BREAKPOINTS ===============*/
 /* For large devices */

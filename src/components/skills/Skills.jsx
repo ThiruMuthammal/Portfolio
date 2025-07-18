@@ -1,48 +1,76 @@
 import React from "react";
 import "./skills.css";
-import Frontend from "./Frontend";
-import Backend from "./Backend";
 import Marquee from "react-fast-marquee";
 
-import img1 from "../../assets/Technology/Azure-Devops.png"
-import img2 from "../../assets/Technology/Azure.png"
-import img3 from "../../assets/Technology/BitBucket.png"
-import img4 from "../../assets/Technology/Jira.png"
-import img5 from "../../assets/Technology/RabbitMQ.png"
-import img6 from "../../assets/Technology/Slack.png"
-import img7 from "../../assets/Technology/Swagger.png"
-import img8 from "../../assets/Technology/Figma.png"
-import img9 from "../../assets/Technology/Firebase.png"
-import img10 from "../../assets/Technology/Git.png"
-import img11 from "../../assets/Technology/GitHub.png"
-import img12 from "../../assets/Technology/HTML5.png"
-import img13 from "../../assets/Technology/CSS3.png"
-import img14 from "../../assets/Technology/JavaScript.png"
-import img15 from "../../assets/Technology/React.png"
-import img16 from "../../assets/Technology/Bootstrap.png"
-import img17 from "../../assets/Technology/Jest.png"
-import img18 from "../../assets/Technology/NPM.png"
-import img19 from "../../assets/Technology/CSharp.png"
-import img20 from "../../assets/Technology/NET.png"
-import img21 from "../../assets/Technology/NET-core.png"
-import img22 from "../../assets/Technology/SQL-Server.png"
-import img23 from "../../assets/Technology/MongoDB.png"
-import img24 from "../../assets/Technology/MySQL.png"
-import img25 from "../../assets/Technology/PostgresSQL.png"
-import img26 from "../../assets/Technology/jQuery.png"
-import img27 from "../../assets/Technology/Docker.png"
-import img28 from "../../assets/Technology/Kubernetes.png"
-import img29 from "../../assets/Technology/Redis.png"
-import img30 from "../../assets/Technology/Visual-Studio.png"
-import img31 from "../../assets/Technology/VS-Code.png"
-import img32 from "../../assets/Technology/Postman.png"
-import img33 from "../../assets/Technology/SonarQube.png"
+// Image imports
+import img1 from "../../assets/Technology/Devops.png";
+import img2 from "../../assets/Technology/Azure.png";
+import img3 from "../../assets/Technology/BitBucket.png";
+import img4 from "../../assets/Technology/Jira.png";
+import img5 from "../../assets/Technology/RabbitMQ.png";
+import img6 from "../../assets/Technology/Slack.png";
+import img7 from "../../assets/Technology/Swagger.png";
+import img8 from "../../assets/Technology/Figma.png";
+import img9 from "../../assets/Technology/Firebase.png";
+import img10 from "../../assets/Technology/Git.png";
+import img11 from "../../assets/Technology/GitHub.png";
+import img12 from "../../assets/Technology/HTML5.png";
+import img13 from "../../assets/Technology/CSS3.png";
+import img14 from "../../assets/Technology/JavaScript.png";
+import img15 from "../../assets/Technology/React.png";
+import img16 from "../../assets/Technology/Bootstrap.png";
+import img17 from "../../assets/Technology/Jest.png";
+import img18 from "../../assets/Technology/NPM.png";
+import img19 from "../../assets/Technology/CSharp.png";
+import img20 from "../../assets/Technology/NET.png";
+import img21 from "../../assets/Technology/NET-core.png";
+import img22 from "../../assets/Technology/SQL.png";
+import img23 from "../../assets/Technology/MongoDB.png";
+import img24 from "../../assets/Technology/MySQL.png";
+import img25 from "../../assets/Technology/PostgresSQL.png";
+import img26 from "../../assets/Technology/jQuery.png";
+import img27 from "../../assets/Technology/Docker.png";
+import img28 from "../../assets/Technology/Kubernetes.png";
+import img29 from "../../assets/Technology/Redis.png";
+import img30 from "../../assets/Technology/VS.png";
+import img31 from "../../assets/Technology/VS-Code.png";
+import img32 from "../../assets/Technology/Postman.png";
+import img33 from "../../assets/Technology/SonarQube.png";
 
 const images = [
-    img1, img2, img3, img4, img5, img6, img7, img8, img9,
-    img10, img11, img12, img13, img14, img15, img16, img17,
-    img18, img19, img20, img21, img22, img23, img24, img25,
-    img26, img27, img28, img29, img30, img31, img32, img33
+    { src: img1, name: "DevOps" },
+    { src: img2, name: "Azure" },
+    { src: img3, name: "BitBucket" },
+    { src: img4, name: "Jira" },
+    { src: img5, name: "RabbitMQ" },
+    { src: img6, name: "Slack" },
+    { src: img7, name: "Swagger" },
+    { src: img8, name: "Figma" },
+    { src: img9, name: "Firebase" },
+    { src: img10, name: "Git" },
+    { src: img11, name: "GitHub" },
+    { src: img12, name: "HTML5" },
+    { src: img13, name: "CSS3" },
+    { src: img14, name: "JavaScript" },
+    { src: img15, name: "React" },
+    { src: img16, name: "Bootstrap" },
+    { src: img17, name: "Jest" },
+    { src: img18, name: "NPM" },
+    { src: img19, name: "C#" },
+    { src: img20, name: ".NET" },
+    { src: img21, name: ".NET Core" },
+    { src: img22, name: "SQL" },
+    { src: img23, name: "MongoDB" },
+    { src: img24, name: "MySQL" },
+    { src: img25, name: "PostgreSQL" },
+    { src: img26, name: "jQuery" },
+    { src: img27, name: "Docker" },
+    { src: img28, name: "Kubernetes" },
+    { src: img29, name: "Redis" },
+    { src: img30, name: "Visual Studio" },
+    { src: img31, name: "VS Code" },
+    { src: img32, name: "Postman" },
+    { src: img33, name: "SonarQube" },
 ];
 
 const Skills = () => {
@@ -51,33 +79,13 @@ const Skills = () => {
             <h2 className="section__title">Skills</h2>
             <span className="section__subtitle">My technical level</span>
 
-            {/* <div className="skills__container container grid">
-                <Frontend />
-                <Backend />
-            </div> */}
-
-            {/* <Marquee speed={50} gradient={false} pauseOnHover={true}>
-                {images.map((imgSrc, index) => (
-                    <div
-                        key={index}
-                        className="marquee-image"
-                        data-tooltip={imgSrc.split('/').pop()}
-                    >
-                        <img src={imgSrc} alt={`img-${index}`} />
+            <Marquee speed={50} gradient={false} pauseOnHover={true}>
+                {images.map((img, index) => (
+                    <div key={index} className="image-tooltip-container">
+                        <img src={img.src} alt={img.name} className="tech-image" />
+                        <span className="image-tooltip">{img.name}</span>
                     </div>
                 ))}
-            </Marquee> */}
-
-            <Marquee speed={50} gradient={false} pauseOnHover={true}>
-                {images.map((imgSrc, index) => {
-                    const fileName = imgSrc.split("/").pop().replace(".png", ""); // Just Tech1, Tech2...
-                    return (
-                        <div key={index} className="image-tooltip-container">
-                            <img src={imgSrc} alt={fileName} className="tech-image" />
-                            <span className="image-tooltip">{fileName}</span>
-                        </div>
-                    );
-                })}
             </Marquee>
         </section>
     );

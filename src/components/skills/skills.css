@@ -1,54 +1,59 @@
-/* .skills__container {
-    grid-template-columns: repeat(2, 350px);
-    column-gap: 3rem;
-    justify-content: center;
-}
-
-.skills__content {
-    background-color: var(--container-color);
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    padding: 2rem 4em;
-    border-radius: 1.5rem;
-}
-
-.skills__title {
-    font-size: var(--normal-font-size);
-    font-weight: var(--font-medium);
+.image-tooltip-container {
+    position: relative;
+    display: inline-block;
+    margin: 0 35px;
     text-align: center;
-    margin-bottom: var(--mb-1-5);
+  }
+  
+  .tech-image {
+    width: 50px;
+    height: 60px;
+    object-fit: contain;
+    transition: transform 0.3s;
+  }
+  
+  /* Optional hover zoom */
+  .image-tooltip-container:hover .tech-image {
+    transform: scale(1.0);
+  }
+  
+  /* Tooltip styles */
+/* Tooltip styles - centered inside image */
+.image-tooltip {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: var(--body-color);
+  color: var(--title-color);
+  padding: 12px 25px;
+  font-size: var(--h2-font-size);
+  border-radius: 4px;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: visible;
+  transition: opacity 0.3s ease;
+  z-index: 2;
 }
 
-.skills__box {
-    display: flex;
-    justify-content: center;
-    column-gap: 2.5rem;
-}
+  
+  /* Show tooltip on hover */
+  .image-tooltip-container:hover .image-tooltip {
+    opacity: 1;
+    visibility: visible;
+  }
 
-.skills__group {
-    display: grid;
-    align-items: flex-start;
-    row-gap: 1rem;
-}
-
-.skills__data {
-   display: flex;
-   column-gap: 0.5rem;
-}
-
-.skills .bx-badge-check {
-    font-size: 1rem;
-    color: var(--title-color);
-}
-
-.skills__name {
-    font-family: var(--normal-font-size);
-    font-weight: var(--font-medium);
-    line-height: 18px;
-}
-
-.skills__level {
-    font-size: var(--tiny-font-size);
-} */
+  .image-tooltip-container {
+    position: relative;
+    overflow: visible !important;
+  }
+  
+  body, html,
+  .skills,
+  .marquee,
+  .skills__container {
+    overflow-x: hidden;
+  }
 
   
 /*=============== BREAKPOINTS ===============*/
@@ -81,53 +86,6 @@
         font-size: var(--small-font-size);
     }
   } */
-
-
-  .image-tooltip-container {
-    position: relative;
-    display: inline-block;
-    margin: 0 20px;
-    text-align: center;
-  }
-  
-  .tech-image {
-    width: 50px;
-    height: 50px;
-    object-fit: contain;
-    transition: transform 0.3s;
-  }
-  
-  /* Optional hover zoom */
-  .image-tooltip-container:hover .tech-image {
-    transform: scale(1.1);
-  }
-  
-  /* Tooltip styles */
-/* Tooltip styles - centered inside image */
-.image-tooltip {
-  position: absolute;
-  top: 15%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: var(--body-color);
-  color: var(--title-color);
-  padding: 4px 10px;
-  font-size: var(--h2-font-size);
-  border-radius: 4px;
-  white-space: nowrap;
-  opacity: 0;
-  visibility: visible;
-  transition: opacity 0.3s ease;
-  z-index: 2;
-}
-
-  
-  /* Show tooltip on hover */
-  .image-tooltip-container:hover .image-tooltip {
-    opacity: 1;
-    visibility: visible;
-  }
-  
   
   @media screen and (min-width: 992px) {
     .marquee-image img {
