@@ -78,30 +78,33 @@ const images = [
 const Skills = () => {
     const scrollRef = useRef(null);
     const [isDragging, setIsDragging] = useState(false);
-    let scrollInterval = useRef(null);
+    const [isPaused, setIsPaused] = useState(false);
+    const scrollInterval = useRef(null);
 
+    // Auto-scroll effect
     useEffect(() => {
         const container = scrollRef.current;
 
         const startAutoScroll = () => {
             scrollInterval.current = setInterval(() => {
-                if (!isDragging) {
-                    container.scrollLeft += 1;
-                    // Reset to start when reaching the end
-                    if (container.scrollLeft + container.offsetWidth >= container.scrollWidth) {
+                if (!isDragging && !isPaused) {
+                    container.scrollLeft += 2;
+                    if (container.scrollLeft + container.clientWidth >= container.scrollWidth) {
                         container.scrollLeft = 0;
                     }
                 }
-            }, 20); // Adjust speed
+            }, 16); // Smooth scroll speed
         };
 
         startAutoScroll();
 
         return () => clearInterval(scrollInterval.current);
-    }, [isDragging]);
+    }, [isDragging, isPaused]);
 
-    // Hand scroll logic
+    // Manual drag scroll (mouse)
     useEffect(() => {
+        // if ('ontouchstart' in window) return;
+
         const container = scrollRef.current;
         let isDown = false;
         let startX;
@@ -115,7 +118,7 @@ const Skills = () => {
             scrollLeft = container.scrollLeft;
         };
 
-        const handleMouseUp = () => {
+        const stopDragging = () => {
             isDown = false;
             setIsDragging(false);
             container.classList.remove('dragging');
@@ -125,31 +128,54 @@ const Skills = () => {
             if (!isDown) return;
             e.preventDefault();
             const x = e.pageX - container.offsetLeft;
-            const walk = (x - startX) * 2;
+            const walk = (x - startX) * 6;
+            container.scrollLeft = scrollLeft - walk;
+        };
+
+        // Touch support
+        const handleTouchStart = (e) => {
+            startX = e.touches[0].pageX;
+            scrollLeft = container.scrollLeft;
+        };
+
+        const handleTouchMove = (e) => {
+            const x = e.touches[0].pageX;
+            const walk = x - startX;
             container.scrollLeft = scrollLeft - walk;
         };
 
         container.addEventListener('mousedown', handleMouseDown);
-        container.addEventListener('mouseleave', handleMouseUp);
-        container.addEventListener('mouseup', handleMouseUp);
+        container.addEventListener('mouseup', stopDragging);
+        container.addEventListener('mouseleave', stopDragging);
         container.addEventListener('mousemove', handleMouseMove);
+
+        container.addEventListener('touchstart', handleTouchStart);
+        container.addEventListener('touchmove', handleTouchMove);
 
         return () => {
             container.removeEventListener('mousedown', handleMouseDown);
-            container.removeEventListener('mouseleave', handleMouseUp);
-            container.removeEventListener('mouseup', handleMouseUp);
+            container.removeEventListener('mouseup', stopDragging);
+            container.removeEventListener('mouseleave', stopDragging);
             container.removeEventListener('mousemove', handleMouseMove);
+
+            container.removeEventListener('touchstart', handleTouchStart);
+            container.removeEventListener('touchmove', handleTouchMove);
         };
     }, []);
 
     return (
         <section className="skills section" id="skills">
             <h2 className="section__title">Skills</h2>
-            <span className="section__subtitle">My technical level</span>
+            {/* <span className="section__subtitle">My technical level</span> */}
 
             <div className="skills__scroll-container" ref={scrollRef}>
                 {images.map((img, index) => (
-                    <div key={index} className="image-tooltip-container">
+                    <div key={index} className="image-tooltip-container"
+                        onMouseEnter={() => setIsPaused(true)}
+                        onMouseLeave={() => setIsPaused(false)}
+                        onTouchStart={() => setIsPaused(true)}
+                        onTouchEnd={() => setIsPaused(false)}
+                    >
                         <img src={img.src} alt={img.name} className="tech-image" />
                         <span className="image-tooltip">{img.name}</span>
                     </div>

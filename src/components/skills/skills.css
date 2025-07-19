@@ -1,26 +1,30 @@
+/* Tooltip image wrapper */
 .image-tooltip-container {
-    position: relative;
-    display: inline-block;
-    margin: 0 35px;
-    text-align: center;
-    flex: 0 0 auto;
-    width: 70px;
-  }
-  
-  .tech-image {
-    width: 50px;
-    height: 60px;
-    object-fit: contain;
-    transition: transform 0.3s;
-  }
-  
-  /* Optional hover zoom */
-  .image-tooltip-container:hover .tech-image {
-    transform: scale(1.0);
-  }
-  
-  /* Tooltip styles */
-/* Tooltip styles - centered inside image */
+  position: relative;
+  display: inline-block;
+  margin: 0 10px;
+  text-align: center;
+  flex: 0 0 auto;
+  width: 40px;
+}
+
+/* Image style */
+.tech-image {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+  transition: transform 0.3s;
+  user-select: none;  
+       
+  /* -webkit-user-drag: none; */
+}
+
+/* Hover zoom */
+.image-tooltip-container:hover .tech-image {
+  transform: scale(1.10);
+}
+
+/* Tooltip styles */
 .image-tooltip {
   position: absolute;
   top: 50%;
@@ -29,7 +33,8 @@
   background-color: var(--body-color);
   color: var(--title-color);
   padding: 12px 25px;
-  font-size: var(--h2-font-size);
+  font-size: var(--medium-font-size);
+  font-weight: normal;
   border-radius: 4px;
   white-space: nowrap;
   opacity: 0;
@@ -37,119 +42,92 @@
   transition: opacity 0.3s ease;
   z-index: 2;
   width: 100%;
+  pointer-events: none;
+  height: 120%;
+  padding-right: 5rem;
 }
 
-  
-  /* Show tooltip on hover */
-  .image-tooltip-container:hover .image-tooltip {
-    opacity: 1;
-    visibility: visible;
+/* Tooltip on hover */
+.image-tooltip-container:hover .image-tooltip {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Horizontal scroll container */
+.skills__scroll-container {
+  display: flex;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  padding: 20px 0;
+  cursor: grab;
+  gap: 35px;
+  touch-action: pan-x;
+}
+
+/* Drag feedback */
+.skills__scroll-container.dragging {
+  cursor: grabbing;
+}
+
+/* Scrollbar (optional) */
+.skills__scroll-container::-webkit-scrollbar {
+  height: 6px;
+}
+/* .skills__scroll-container::-webkit-scrollbar-thumb {
+  background: rgba(100, 100, 100, 0.5);
+  border-radius: 3px;
+} */
+
+.tech-image,
+.image-tooltip-container,
+.image-tooltip {
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+/* Allow horizontal overflow */
+body,
+html,
+.skills,
+.skills__container {
+  overflow-x: visible;
+}
+
+/* Responsive image sizing */
+@media screen and (min-width: 992px) {
+  .tech-image {
+    width: 100px;
+    height: auto;
   }
 
   .image-tooltip-container {
-    position: relative;
-    overflow: visible !important;
+    margin: 0 20px;
   }
-  
-  body, html,
-  .skills,
-  /* .marquee, */
-  .skills__container {
-    overflow-x: visible;
+}
+
+@media screen and (max-width: 768px) {
+  .tech-image {
+    width: 60px;
   }
 
-  .skills__scroll-container {
-    display: flex;
-    overflow-x: auto;
-    scroll-behavior: smooth;
-    -webkit-overflow-scrolling: touch;
-    padding: 20px 0;
-    cursor: grab;
-    gap: 10px;
+  .image-tooltip-container {
+    margin: 0 12px;
   }
-  
-  .skills__scroll-container.dragging {
-    cursor: grabbing;
-  }
-  
-  .skills__scroll-container::-webkit-scrollbar {
-    height: 6px;
-  }
-  
-  /* .skills__scroll-container::-webkit-scrollbar-thumb {
-    background: rgba(100, 100, 100, 0.5);
-    border-radius: 3px;
-  } */
-  
-  
-  
-/*=============== BREAKPOINTS ===============*/
-/* For large devices */
-/* @media screen and (max-width: 992px) {
-    .skills__container {
-        grid-template-columns: max-content;
-        row-gap: 2rem;
-    }
-  }
-   */
-  /* For medium devices */
-  /* @media screen and (max-width: 576px) {
-    .skills__container {
-        grid-template-columns: 1fr;
-    }
+}
 
-    .skills__content {
-        padding: 1.5rem;
-    }
-  } */
-  
-  /* For small devices */
-  /* @media screen and (max-width: 350px) {
-    .skills__box {
-        column-gap: 1.25rem;
-    }
+@media screen and (max-width: 576px) {
+  .tech-image {
+    width: 60px;
+  }
 
-    .skills__name {
-        font-size: var(--small-font-size);
-    }
-  } */
-  
-  @media screen and (min-width: 992px) {
-    .marquee-image img {
-      width: 100px;
-    }
-  
-    .marquee-image {
-      margin-right: 2.5rem;
-    }
+  .image-tooltip-container {
+    margin: 0 10px;
   }
-  
-  /* Medium Devices */
-  @media screen and (max-width: 768px) {
-    .marquee-image {
-      margin-right: 1.5rem;
-    }
-  
-    .marquee-image img {
-      width: 60px;
-    }
+}
+
+@media screen and (max-width: 350px) {
+  .tech-image {
+    width: 40px;
   }
-  
-  /* Small Devices */
-  @media screen and (max-width: 576px) {
-    .marquee-image img {
-      width: 60px;
-    }
-  
-    .marquee-image {
-      margin-right: 1.25rem;
-    }
-  }
-  
-  /* Extra Small Devices */
-  @media screen and (max-width: 350px) {
-    .marquee-image img {
-      width: 40px;
-    }
-  }
-  
+}
