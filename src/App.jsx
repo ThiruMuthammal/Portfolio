@@ -7,6 +7,8 @@ import Skills from './components/skills/Skills';
 import Experience from './components/experience/Experience';
 import Qualification from './components/qualification/Qualification';
 import Contact from './components/contact/Contact';
+import Footer from './components/footer/Footer';
+import ScrollUp from './components/scrollup/Scrollup';
 
 
 
@@ -15,12 +17,16 @@ function App() {
   return (
     <>
       <Header />
-      <Home />
-      <About />
-      <Experience />
-      <Qualification />
-      <Skills />
-      <Contact />
+      <main className='main'>
+        <Home />
+        <About />
+        <Experience />
+        <Qualification />
+        <Skills />
+        <Contact />
+      </main>
+      <Footer />
+      <ScrollUp />
     </>
   )
 }

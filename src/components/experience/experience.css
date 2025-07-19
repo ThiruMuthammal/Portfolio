@@ -10,6 +10,7 @@
     background-color: var(--container-color);
     padding: 6rem 0 2rem 2.5rem;
     border-radius: 1.5rem;
+    cursor: pointer;
 }
 
 .experience__icon {
@@ -32,7 +33,6 @@
     display: inline-flex;
     align-items: center;
     column-gap: 0.25rem;
-    cursor: pointer;
 }
 
 .experience__button-icon {
@@ -99,29 +99,42 @@
     row-gap: 0.75rem;
 }
 
-.experience__modal-experiences {
+/* .experience__modal-experiences {
     display: flex;
     align-items: center;
     column-gap: 0.5rem;
 }
 
-/* .experience__modal-icon {
+.experience__modal-icon {
     color: var(--title-color);
     font-size: 1.1rem;
     
+} 
+
+.experience__modal-info {
+    font-size: var(--small-font-size);
 } */
+
+.experience__modal-experiences {
+    display: flex;
+    align-items: flex-start; /* Align icon to top of the paragraph */
+    gap: 0.75rem; /* space between icon and text */
+  }
   
   .experience__modal-icon {
     color: var(--title-color);
     font-size: 1.1rem;
-    flex-shrink: 0; /* Prevent icon from shrinking */
-    margin-top: 0.25rem; /* Align better with multi-line text */
+    line-height: 1;       
+    flex-shrink: 0;         
+    margin-top: 0.2rem;    
   }
   
-
-.experience__modal-info {
+  .experience__modal-info {
+    margin: 0;
+    line-height: 1.5;
     font-size: var(--small-font-size);
-}
+  }
+  
 
 /* Activate Modal */
 
