@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useRef, useEffect, useState } from 'react';
 import "./skills.css";
-import Marquee from "react-fast-marquee";
+// import Marquee from "react-fast-marquee";
+
 
 // Image imports
 import img1 from "../../assets/Technology/Devops.png";
@@ -73,22 +74,109 @@ const images = [
     { src: img33, name: "SonarQube" },
 ];
 
+
 const Skills = () => {
+    const scrollRef = useRef(null);
+    const [isDragging, setIsDragging] = useState(false);
+    let scrollInterval = useRef(null);
+
+    useEffect(() => {
+        const container = scrollRef.current;
+
+        const startAutoScroll = () => {
+            scrollInterval.current = setInterval(() => {
+                if (!isDragging) {
+                    container.scrollLeft += 1;
+                    // Reset to start when reaching the end
+                    if (container.scrollLeft + container.offsetWidth >= container.scrollWidth) {
+                        container.scrollLeft = 0;
+                    }
+                }
+            }, 20); // Adjust speed
+        };
+
+        startAutoScroll();
+
+        return () => clearInterval(scrollInterval.current);
+    }, [isDragging]);
+
+    // Hand scroll logic
+    useEffect(() => {
+        const container = scrollRef.current;
+        let isDown = false;
+        let startX;
+        let scrollLeft;
+
+        const handleMouseDown = (e) => {
+            isDown = true;
+            setIsDragging(true);
+            container.classList.add('dragging');
+            startX = e.pageX - container.offsetLeft;
+            scrollLeft = container.scrollLeft;
+        };
+
+        const handleMouseUp = () => {
+            isDown = false;
+            setIsDragging(false);
+            container.classList.remove('dragging');
+        };
+
+        const handleMouseMove = (e) => {
+            if (!isDown) return;
+            e.preventDefault();
+            const x = e.pageX - container.offsetLeft;
+            const walk = (x - startX) * 2;
+            container.scrollLeft = scrollLeft - walk;
+        };
+
+        container.addEventListener('mousedown', handleMouseDown);
+        container.addEventListener('mouseleave', handleMouseUp);
+        container.addEventListener('mouseup', handleMouseUp);
+        container.addEventListener('mousemove', handleMouseMove);
+
+        return () => {
+            container.removeEventListener('mousedown', handleMouseDown);
+            container.removeEventListener('mouseleave', handleMouseUp);
+            container.removeEventListener('mouseup', handleMouseUp);
+            container.removeEventListener('mousemove', handleMouseMove);
+        };
+    }, []);
+
     return (
         <section className="skills section" id="skills">
             <h2 className="section__title">Skills</h2>
             <span className="section__subtitle">My technical level</span>
 
-            <Marquee speed={50} gradient={false} pauseOnHover={true}>
+            <div className="skills__scroll-container" ref={scrollRef}>
                 {images.map((img, index) => (
                     <div key={index} className="image-tooltip-container">
                         <img src={img.src} alt={img.name} className="tech-image" />
                         <span className="image-tooltip">{img.name}</span>
                     </div>
                 ))}
-            </Marquee>
+            </div>
         </section>
     );
 };
 
 export default Skills;
+
+// const Skills = () => {
+//     return (
+//         <section className="skills section" id="skills">
+//             <h2 className="section__title">Skills</h2>
+//             <span className="section__subtitle">My technical level</span>
+
+//             <Marquee speed={50} gradient={false} pauseOnHover={true}>
+//                 {images.map((img, index) => (
+//                     <div key={index} className="image-tooltip-container">
+//                         <img src={img.src} alt={img.name} className="tech-image" />
+//                         <span className="image-tooltip">{img.name}</span>
+//                     </div>
+//                 ))}
+//             </Marquee>
+//         </section>
+//     );
+// };
+
+// export default Skills;

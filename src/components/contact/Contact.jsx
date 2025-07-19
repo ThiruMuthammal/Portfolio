@@ -72,12 +72,12 @@ const Contact = () => {
                             <div className="contact__card">
                                 <i className="bx bx-mail-send contact__card-icon"></i>
                                 <h3 className="contact__card-title">Email</h3>
-                                <span className="contact__card-data">user@gmail.com</span>
+                                {/* <span className="contact__card-data">user@gmail.com</span> */}
                                 Write me <i className="bx bx-right-arrow-alt contact__button-icon"></i>
                             </div>
                         </a>
                         <a
-                            href="https://api.whatsapp.com/send?phone=7639833601&text=Hello, more information!"
+                            href="https://api.whatsapp.com/send?phone=7639833601&text=Hello"
                             className="contact__button"
                             target="_blank"
                             rel="noopener noreferrer"
@@ -85,7 +85,7 @@ const Contact = () => {
                             <div className="contact__card">
                                 <i className="bx bxl-whatsapp contact__card-icon"></i>
                                 <h3 className="contact__card-title">Whatsapp</h3>
-                                <span className="contact__card-data">999-888-7777</span>
+                                {/* <span className="contact__card-data">999-888-7777</span> */}
 
                                 Write me <i className="bx bx-right-arrow-alt contact__button-icon"></i>
 
@@ -121,7 +121,7 @@ const Contact = () => {
                         </div>
 
                         <div className="contact__form-div contact__form-area">
-                            <label className={`contact__form-tag ${errors.project ? 'error' : ''}`}>Project</label>
+                            <label className={`contact__form-tag ${errors.project ? 'error' : ''}`}>Description</label>
                             <textarea
                                 name="project"
                                 cols={30}

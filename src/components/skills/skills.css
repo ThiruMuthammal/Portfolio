@@ -3,6 +3,8 @@
     display: inline-block;
     margin: 0 35px;
     text-align: center;
+    flex: 0 0 auto;
+    width: 70px;
   }
   
   .tech-image {
@@ -34,6 +36,7 @@
   visibility: visible;
   transition: opacity 0.3s ease;
   z-index: 2;
+  width: 100%;
 }
 
   
@@ -50,11 +53,35 @@
   
   body, html,
   .skills,
-  .marquee,
+  /* .marquee, */
   .skills__container {
-    overflow-x: hidden;
+    overflow-x: visible;
   }
 
+  .skills__scroll-container {
+    display: flex;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    padding: 20px 0;
+    cursor: grab;
+    gap: 10px;
+  }
+  
+  .skills__scroll-container.dragging {
+    cursor: grabbing;
+  }
+  
+  .skills__scroll-container::-webkit-scrollbar {
+    height: 6px;
+  }
+  
+  /* .skills__scroll-container::-webkit-scrollbar-thumb {
+    background: rgba(100, 100, 100, 0.5);
+    border-radius: 3px;
+  } */
+  
+  
   
 /*=============== BREAKPOINTS ===============*/
 /* For large devices */
