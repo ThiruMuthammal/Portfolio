@@ -60,7 +60,6 @@
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
   padding: 20px 0;
-  cursor: grab;
   gap: 35px;
   touch-action: pan-x;
 }

@@ -77,7 +77,6 @@ const images = [
 
 const Skills = () => {
     const scrollRef = useRef(null);
-    const [isDragging, setIsDragging] = useState(false);
     const [isPaused, setIsPaused] = useState(false);
     const scrollInterval = useRef(null);
 
@@ -87,81 +86,62 @@ const Skills = () => {
 
         const startAutoScroll = () => {
             scrollInterval.current = setInterval(() => {
-                if (!isDragging && !isPaused) {
-                    container.scrollLeft += 2;
-                    if (container.scrollLeft + container.clientWidth >= container.scrollWidth) {
+                if (!isPaused) {
+                    const isMobile = window.innerWidth <= 768;
+                    const scrollSpeed = isMobile ? 3.5 : 4.5;
+
+                    container.scrollLeft += scrollSpeed;
+
+                    // Reset halfway (since content is duplicated)
+                    if (container.scrollLeft >= container.scrollWidth / 2) {
                         container.scrollLeft = 0;
                     }
                 }
-            }, 16); // Smooth scroll speed
+            }, 16);
         };
 
         startAutoScroll();
-
         return () => clearInterval(scrollInterval.current);
-    }, [isDragging, isPaused]);
+    }, [isPaused]);
 
     // Manual drag scroll (mouse)
     useEffect(() => {
-        // if ('ontouchstart' in window) return;
-
         const container = scrollRef.current;
-        let isDown = false;
-        let startX;
-        let scrollLeft;
 
-        const handleMouseDown = (e) => {
-            isDown = true;
-            setIsDragging(true);
-            container.classList.add('dragging');
-            startX = e.pageX - container.offsetLeft;
-            scrollLeft = container.scrollLeft;
-        };
+        // Detect mobile
+        const isMobile = window.innerWidth <= 768;
 
-        const stopDragging = () => {
-            isDown = false;
-            setIsDragging(false);
-            container.classList.remove('dragging');
-        };
+        if (!isMobile) return;
 
-        const handleMouseMove = (e) => {
-            if (!isDown) return;
-            e.preventDefault();
-            const x = e.pageX - container.offsetLeft;
-            const walk = (x - startX) * 6;
-            container.scrollLeft = scrollLeft - walk;
-        };
+        let touchStartX = 0;
+        let touchStartScroll = 0;
 
-        // Touch support
         const handleTouchStart = (e) => {
-            startX = e.touches[0].pageX;
-            scrollLeft = container.scrollLeft;
+            touchStartX = e.touches[0].pageX;
+            touchStartScroll = container.scrollLeft;
         };
 
         const handleTouchMove = (e) => {
-            const x = e.touches[0].pageX;
-            const walk = x - startX;
-            container.scrollLeft = scrollLeft - walk;
+            const touchX = e.touches[0].pageX;
+            const deltaX = (touchX - touchStartX) * 6; // speed multiplier
+            container.scrollLeft = touchStartScroll - deltaX;
         };
 
-        container.addEventListener('mousedown', handleMouseDown);
-        container.addEventListener('mouseup', stopDragging);
-        container.addEventListener('mouseleave', stopDragging);
-        container.addEventListener('mousemove', handleMouseMove);
+        const handleTouchEnd = () => {
+            setIsPaused(false);
+        };
 
         container.addEventListener('touchstart', handleTouchStart);
         container.addEventListener('touchmove', handleTouchMove);
+        container.addEventListener("touchend", handleTouchEnd);
 
         return () => {
-            container.removeEventListener('mousedown', handleMouseDown);
-            container.removeEventListener('mouseup', stopDragging);
-            container.removeEventListener('mouseleave', stopDragging);
-            container.removeEventListener('mousemove', handleMouseMove);
-
             container.removeEventListener('touchstart', handleTouchStart);
             container.removeEventListener('touchmove', handleTouchMove);
+            container.removeEventListener("touchend", handleTouchEnd);
         };
     }, []);
+
 
     return (
         <section className="skills section" id="skills">
@@ -169,8 +149,10 @@ const Skills = () => {
             {/* <span className="section__subtitle">My technical level</span> */}
 
             <div className="skills__scroll-container" ref={scrollRef}>
-                {images.map((img, index) => (
-                    <div key={index} className="image-tooltip-container"
+                {[...images, ...images].map((img, index) => (
+                    <div
+                        key={index}
+                        className="image-tooltip-container"
                         onMouseEnter={() => setIsPaused(true)}
                         onMouseLeave={() => setIsPaused(false)}
                         onTouchStart={() => setIsPaused(true)}
