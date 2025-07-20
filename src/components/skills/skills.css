@@ -38,7 +38,7 @@
   }
 
   .marquee-track {
-    animation: scroll-left 20s linear infinite;
+    animation: scroll-left 50s linear infinite;
     scroll-behavior: smooth;
     -webkit-overflow-scrolling: touch;
   }
