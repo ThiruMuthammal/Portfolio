@@ -11,7 +11,7 @@
 .marquee-track {
   display: inline-flex;
   gap: 30px;
-  animation: scroll-left 30s linear infinite;
+  animation: scroll-left 50s linear infinite;
   will-change: transform;
 }
 
