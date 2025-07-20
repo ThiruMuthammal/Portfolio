@@ -24,8 +24,6 @@ const Footer = () => {
                         <i class="uil uil-envelope"></i>
 
                     </a>
-
-
                     <a href="https://www.linkedin.com/in/thirumuthammal/" className="footer__social-link" target="_blank">
                         <i class="uil uil-linkedin"></i>
                     </a>
@@ -33,10 +31,14 @@ const Footer = () => {
                     <a href="https://github.com/ThiruMuthammal" className="footer__social-link" target="_blank">
                         <i class="uil uil-github"></i>
                     </a>
+
+                    <a href="tel:+917639833601" className="footer__social-link">
+                        <i class="uil uil-phone-alt"></i>
+                    </a>
                 </div>
 
-                <span className="footer__contact-copy"><i className="bx bxs-phone phone__button-icon"></i>7639833601
-                </span>
+                {/* <span className="footer__contact-copy"><i className="bx bxs-phone phone__button-icon"></i>7639833601
+                </span> */}
                 {/* <span className="footer__copy">&#169; Thirumoorthy. All rights reserved</span> */}
             </div>
 

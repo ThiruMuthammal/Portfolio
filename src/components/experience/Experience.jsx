@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./experience.css";
 
 const Experience = () => {
@@ -7,7 +7,18 @@ const Experience = () => {
 
     const toggleTab = (index) => {
         setToggleState(index);
-    }
+        if (index !== 0) {
+            document.body.classList.add("modal-open");
+        } else {
+            document.body.classList.remove("modal-open");
+        }
+    };
+
+    useEffect(() => {
+        return () => {
+            document.body.classList.remove("modal-open");
+        };
+    }, []);
     return (
         <section className="experience section" id="experience">
             <h3 className="section__title">Experience</h3>
