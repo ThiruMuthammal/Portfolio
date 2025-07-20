@@ -1,128 +1,87 @@
-.image-tooltip-container {
-    position: relative;
-    display: inline-block;
-    margin: 0 35px;
-    text-align: center;
-  }
-  
-  .tech-image {
-    width: 50px;
-    height: 60px;
-    object-fit: contain;
-    transition: transform 0.3s;
-  }
-  
-  /* Optional hover zoom */
-  .image-tooltip-container:hover .tech-image {
-    transform: scale(1.0);
-  }
-  
-  /* Tooltip styles */
-/* Tooltip styles - centered inside image */
-.image-tooltip {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: var(--body-color);
-  color: var(--title-color);
-  padding: 12px 25px;
-  font-size: var(--h2-font-size);
-  border-radius: 4px;
-  white-space: nowrap;
-  opacity: 0;
-  visibility: visible;
-  transition: opacity 0.3s ease;
-  z-index: 2;
+/* Container holding the marquee */
+.marquee-wrapper {
+  overflow: hidden;
+  width: 100%;
+  user-select: none;
+  touch-action: pan-x;
+  position: relative;
 }
 
-  
-  /* Show tooltip on hover */
-  .image-tooltip-container:hover .image-tooltip {
-    opacity: 1;
-    visibility: visible;
+/* Inner content track that auto-scrolls */
+.marquee-track {
+  display: inline-flex;
+  gap: 30px;
+  animation: scroll-left 50s linear infinite;
+  will-change: transform;
+}
+
+/* Pause scrolling on hover or touch */
+.marquee-wrapper:hover .marquee-track,
+.marquee-wrapper:active .marquee-track {
+  animation-play-state: paused;
+}
+
+/* Infinite scroll animation */
+@keyframes scroll-left {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* On mobile, allow manual scroll */
+@media (max-width: 768px) {
+  .marquee-wrapper {
+    overflow-x: auto;
   }
 
-  .image-tooltip-container {
-    position: relative;
-    overflow: visible !important;
+  .marquee-track {
+    animation: scroll-left 50s linear infinite;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
   }
-  
-  body, html,
-  .skills,
-  .marquee,
-  .skills__container {
-    overflow-x: hidden;
-  }
+}
 
-  
-/*=============== BREAKPOINTS ===============*/
-/* For large devices */
-/* @media screen and (max-width: 992px) {
-    .skills__container {
-        grid-template-columns: max-content;
-        row-gap: 2rem;
-    }
-  }
-   */
-  /* For medium devices */
-  /* @media screen and (max-width: 576px) {
-    .skills__container {
-        grid-template-columns: 1fr;
-    }
+.image-tooltip-container {
+  flex: 0 0 auto;
+  width: 70px;
+  text-align: center;
+  position: relative;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
-    .skills__content {
-        padding: 1.5rem;
-    }
-  } */
-  
-  /* For small devices */
-  /* @media screen and (max-width: 350px) {
-    .skills__box {
-        column-gap: 1.25rem;
-    }
+/* Image styling */
+.tech-image {
+  width: 40px;
+  height: auto;
+  object-fit: contain;
+  transition: opacity 0.3s;
+}
 
-    .skills__name {
-        font-size: var(--small-font-size);
-    }
-  } */
-  
-  @media screen and (min-width: 992px) {
-    .marquee-image img {
-      width: 100px;
-    }
-  
-    .marquee-image {
-      margin-right: 2.5rem;
-    }
-  }
-  
-  /* Medium Devices */
-  @media screen and (max-width: 768px) {
-    .marquee-image {
-      margin-right: 1.5rem;
-    }
-  
-    .marquee-image img {
-      width: 60px;
-    }
-  }
-  
-  /* Small Devices */
-  @media screen and (max-width: 576px) {
-    .marquee-image img {
-      width: 60px;
-    }
-  
-    .marquee-image {
-      margin-right: 1.25rem;
-    }
-  }
-  
-  /* Extra Small Devices */
-  @media screen and (max-width: 350px) {
-    .marquee-image img {
-      width: 40px;
-    }
-  }
-  
+/* Hide image on hover */
+.image-tooltip-container:hover .tech-image {
+  opacity: 0;
+}
+
+/* Tooltip styling */
+.image-tooltip {
+  position: absolute;
+  color: #fff;
+  font-size: var(--medium-font-size);
+  background: var(--title-color);
+  padding: 6px 10px;
+  border-radius: 4px;
+  opacity: 0;
+  transition: opacity 0.3s;
+  white-space: nowrap;
+}
+
+/* Show tooltip on hover */
+.image-tooltip-container:hover .image-tooltip {
+  opacity: 1;
+}

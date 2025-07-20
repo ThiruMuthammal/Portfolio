@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./experience.css";
 
 const Experience = () => {
@@ -7,25 +7,41 @@ const Experience = () => {
 
     const toggleTab = (index) => {
         setToggleState(index);
-    }
+        if (index !== 0) {
+            document.body.classList.add("modal-open");
+        } else {
+            document.body.classList.remove("modal-open");
+        }
+    };
+
+    useEffect(() => {
+        return () => {
+            document.body.classList.remove("modal-open");
+        };
+    }, []);
     return (
         <section className="experience section" id="experience">
             <h3 className="section__title">Experience</h3>
             <span className="section__subtitle">What I offer</span>
 
             <div className="experience__container container grid">
-                <div className="experience__content">
+                <div className="experience__content" onClick={() =>
+                    toggleTab(1)
+                }>
                     <div>
                         <i class='uil uil-briefcase-alt experience__icon'></i>
                         <h3 className="experience__title">Flyers Soft</h3>
                     </div>
 
-                    <span className="experience__button" onClick={() =>
-                        toggleTab(1)
-                    }>View More <i
+                    <span className="experience__button">View More <i
                         className="uil uil-arrow-right experience__button-icon"></i> </span>
 
-                    <div className={toggleState === 1 ? "experience__modal active-modal" : "experience__modal"}>
+                    <div className={
+                        toggleState === 1
+                            ? 'experience__modal active-modal'
+                            : 'experience__modal'
+                    }
+                        onClick={(e) => e.stopPropagation()}>
                         <div className="experience__modal-content">
                             <i onClick={() => toggleTab(0)} className="uil uil-times experience__modal-close"></i>
 
@@ -85,14 +101,19 @@ const Experience = () => {
                         </div>
                     </div>
                 </div>
-                <div className="experience__content">
+                <div className="experience__content" onClick={() =>
+                    toggleTab(2)}>
                     <div>
                         <i class='uil uil-briefcase-alt experience__icon'></i>
                         <h3 className="experience__title">Firstsource</h3>
                     </div>
-                    <span className="experience__button" onClick={() =>
-                        toggleTab(2)}>View More <i className="uil uil-arrow-right experience__button-icon"></i> </span>
-                    <div className={toggleState === 2 ? "experience__modal active-modal" : "experience__modal"}>
+                    <span className="experience__button">View More <i className="uil uil-arrow-right experience__button-icon"></i> </span>
+                    <div className={
+                        toggleState === 2
+                            ? 'experience__modal active-modal'
+                            : 'experience__modal'
+                    }
+                        onClick={(e) => e.stopPropagation()}>
                         <div className="experience__modal-content">
                             <i onClick={() => toggleTab(0)} className="uil uil-times experience__modal-close"></i>
 
@@ -140,15 +161,20 @@ const Experience = () => {
                         </div>
                     </div>
                 </div>
-                <div className="experience__content">
+                <div className="experience__content" onClick={() =>
+                    toggleTab(3)}>
                     <div>
                         <i class='uil uil-briefcase-alt experience__icon'></i>
                         <h3 className="experience__title">Intake Freelance</h3>
                     </div>
-                    <span className="experience__button" onClick={() =>
-                        toggleTab(3)}>View More <i className="uil uil-arrow-right experience__button-icon"></i> </span>
+                    <span className="experience__button">View More <i className="uil uil-arrow-right experience__button-icon"></i> </span>
 
-                    <div className={toggleState === 3 ? "experience__modal active-modal" : "experience__modal"}>
+                    <div className={
+                        toggleState === 3
+                            ? 'experience__modal active-modal'
+                            : 'experience__modal'
+                    }
+                        onClick={(e) => e.stopPropagation()}>
                         <div className="experience__modal-content">
                             <i onClick={() => toggleTab(0)} className="uil uil-times experience__modal-close"></i>
 

@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useRef, useEffect, useState } from 'react';
 import "./skills.css";
-import Marquee from "react-fast-marquee";
+// import Marquee from "react-fast-marquee";
+
 
 // Image imports
 import img1 from "../../assets/Technology/Devops.png";
@@ -73,22 +74,25 @@ const images = [
     { src: img33, name: "SonarQube" },
 ];
 
+
 const Skills = () => {
     return (
         <section className="skills section" id="skills">
             <h2 className="section__title">Skills</h2>
-            <span className="section__subtitle">My technical level</span>
+            {/* <span className="section__subtitle">My technical level</span> */}
 
-            <Marquee speed={50} gradient={false} pauseOnHover={true}>
-                {images.map((img, index) => (
-                    <div key={index} className="image-tooltip-container">
-                        <img src={img.src} alt={img.name} className="tech-image" />
-                        <span className="image-tooltip">{img.name}</span>
-                    </div>
-                ))}
-            </Marquee>
+            <div className="marquee-wrapper">
+                <div className="marquee-track">
+                    {[...images, ...images].map((img, index) => (
+                        <div key={index} className="image-tooltip-container">
+                            <img src={img.src} alt={img.name} className="tech-image" />
+                            <span className="image-tooltip">{img.name}</span>
+                        </div>
+                    ))}
+                </div>
+            </div>
         </section>
     );
-};
+}
 
 export default Skills;
