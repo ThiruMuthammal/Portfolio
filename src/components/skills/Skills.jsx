@@ -76,115 +76,114 @@ const images = [
 
 
 const Skills = () => {
-    const scrollRef = useRef(null);
-    const [isPaused, setIsPaused] = useState(false);
-    const scrollInterval = useRef(null);
+    // const scrollRef = useRef(null);
+    //     const [isPaused, setIsPaused] = useState(false);
 
-    // Auto-scroll effect
-    useEffect(() => {
-        const container = scrollRef.current;
+    //     useEffect(() => {
+    //         const container = scrollRef.current;
+    //         if (!container) return;
 
-        const startAutoScroll = () => {
-            scrollInterval.current = setInterval(() => {
-                if (!isPaused) {
-                    const isMobile = window.innerWidth <= 768;
-                    const scrollSpeed = isMobile ? 3.5 : 4.5;
+    //         const speed = window.innerWidth <= 768 ? 3.5 : 3;
+    //         let animationId;
 
-                    container.scrollLeft += scrollSpeed;
+    //         const autoScroll = () => {
+    //             if (!isPaused) {
+    //                 container.scrollLeft += speed;
 
-                    // Reset halfway (since content is duplicated)
-                    if (container.scrollLeft >= container.scrollWidth / 2) {
-                        container.scrollLeft = 0;
-                    }
-                }
-            }, 16);
-        };
+    //                 // Looping logic: reset when halfway through
+    //                 if (container.scrollLeft >= container.scrollWidth / 2) {
+    //                     container.scrollLeft = 0;
+    //                 }
+    //             }
+    //             animationId = requestAnimationFrame(autoScroll);
+    //         };
 
-        startAutoScroll();
-        return () => clearInterval(scrollInterval.current);
-    }, [isPaused]);
+    //         autoScroll();
 
-    // Manual drag scroll (mouse)
-    useEffect(() => {
-        const container = scrollRef.current;
+    //         return () => cancelAnimationFrame(animationId);
+    //     }, [isPaused]);
 
-        // Detect mobile
-        const isMobile = window.innerWidth <= 768;
 
-        if (!isMobile) return;
+    //     // Manual drag scroll (mouse)
+    //     useEffect(() => {
+    //         const container = scrollRef.current;
 
-        let touchStartX = 0;
-        let touchStartScroll = 0;
+    //         // Detect mobile
+    //         const isMobile = window.innerWidth <= 768;
 
-        const handleTouchStart = (e) => {
-            touchStartX = e.touches[0].pageX;
-            touchStartScroll = container.scrollLeft;
-        };
+    //         if (!isMobile) return;
 
-        const handleTouchMove = (e) => {
-            const touchX = e.touches[0].pageX;
-            const deltaX = (touchX - touchStartX) * 6; // speed multiplier
-            container.scrollLeft = touchStartScroll - deltaX;
-        };
+    //         let touchStartX = 0;
+    //         let touchStartScroll = 0;
 
-        const handleTouchEnd = () => {
-            setIsPaused(false);
-        };
+    //         const handleTouchStart = (e) => {
+    //             touchStartX = e.touches[0].pageX;
+    //             touchStartScroll = container.scrollLeft;
+    //         };
 
-        container.addEventListener('touchstart', handleTouchStart);
-        container.addEventListener('touchmove', handleTouchMove);
-        container.addEventListener("touchend", handleTouchEnd);
+    //         const handleTouchMove = (e) => {
+    //             const touchX = e.touches[0].pageX;
+    //             const deltaX = (touchX - touchStartX) * 8; // speed multiplier
+    //             container.scrollLeft = touchStartScroll - deltaX;
+    //         };
 
-        return () => {
-            container.removeEventListener('touchstart', handleTouchStart);
-            container.removeEventListener('touchmove', handleTouchMove);
-            container.removeEventListener("touchend", handleTouchEnd);
-        };
-    }, []);
+    //         const handleTouchEnd = () => {
+    //             setIsPaused(false);
+    //         };
 
+    //         container.addEventListener('touchstart', handleTouchStart);
+    //         container.addEventListener('touchmove', handleTouchMove);
+    //         container.addEventListener("touchend", handleTouchEnd);
+
+    //         return () => {
+    //             container.removeEventListener('touchstart', handleTouchStart);
+    //             container.removeEventListener('touchmove', handleTouchMove);
+    //             container.removeEventListener("touchend", handleTouchEnd);
+    //         };
+    //     }, []);
+
+
+    //     return (
+    //         <section className="skills section" id="skills">
+    //             <h2 className="section__title">Skills</h2>
+    //             {/* <span className="section__subtitle">My technical level</span> */}
+
+    //             <div className="skills__scroll-container" ref={scrollRef}>
+    //                 {[...images, ...images].map((img, index) => (
+    //                     <div
+    //                         key={index}
+    //                         className="image-tooltip-container"
+    //                         onMouseEnter={() => setIsPaused(true)}
+    //                         onMouseLeave={() => setIsPaused(false)}
+    //                         onTouchStart={() => setIsPaused(true)}
+    //                         onTouchEnd={() => setIsPaused(false)}
+    //                     >
+    //                         <img src={img.src} alt={img.name} className="tech-image" />
+    //                         <span className="image-tooltip">{img.name}</span>
+    //                     </div>
+    //                 ))}
+    //             </div>
+    //         </section>
+    //     );
+    // };
 
     return (
         <section className="skills section" id="skills">
             <h2 className="section__title">Skills</h2>
             {/* <span className="section__subtitle">My technical level</span> */}
 
-            <div className="skills__scroll-container" ref={scrollRef}>
-                {[...images, ...images].map((img, index) => (
-                    <div
-                        key={index}
-                        className="image-tooltip-container"
-                        onMouseEnter={() => setIsPaused(true)}
-                        onMouseLeave={() => setIsPaused(false)}
-                        onTouchStart={() => setIsPaused(true)}
-                        onTouchEnd={() => setIsPaused(false)}
-                    >
-                        <img src={img.src} alt={img.name} className="tech-image" />
-                        <span className="image-tooltip">{img.name}</span>
-                    </div>
-                ))}
+            <div className="marquee-wrapper">
+                <div className="marquee-track">
+                    {[...images, ...images].map((img, index) => (
+                        <div key={index} className="image-tooltip-container">
+                            <img src={img.src} alt={img.name} className="tech-image" />
+                            <span className="image-tooltip">{img.name}</span>
+                        </div>
+                    ))}
+                </div>
             </div>
         </section>
     );
-};
+}
 
 export default Skills;
-
-// const Skills = () => {
-//     return (
-//         <section className="skills section" id="skills">
-//             <h2 className="section__title">Skills</h2>
-//             <span className="section__subtitle">My technical level</span>
-
-//             <Marquee speed={50} gradient={false} pauseOnHover={true}>
-//                 {images.map((img, index) => (
-//                     <div key={index} className="image-tooltip-container">
-//                         <img src={img.src} alt={img.name} className="tech-image" />
-//                         <span className="image-tooltip">{img.name}</span>
-//                     </div>
-//                 ))}
-//             </Marquee>
-//         </section>
-//     );
-// };
-
-// export default Skills;

@@ -1,132 +1,87 @@
-/* Tooltip image wrapper */
-.image-tooltip-container {
+/* Container holding the marquee */
+.marquee-wrapper {
+  overflow: hidden;
+  width: 100%;
+  user-select: none;
+  touch-action: pan-x;
   position: relative;
-  display: inline-block;
-  margin: 0 10px;
-  text-align: center;
+}
+
+/* Inner content track that auto-scrolls */
+.marquee-track {
+  display: inline-flex;
+  gap: 30px;
+  animation: scroll-left 30s linear infinite;
+  will-change: transform;
+}
+
+/* Pause scrolling on hover or touch */
+.marquee-wrapper:hover .marquee-track,
+.marquee-wrapper:active .marquee-track {
+  animation-play-state: paused;
+}
+
+/* Infinite scroll animation */
+@keyframes scroll-left {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* On mobile, allow manual scroll */
+@media (max-width: 768px) {
+  .marquee-wrapper {
+    overflow-x: auto;
+  }
+
+  .marquee-track {
+    animation: scroll-left 20s linear infinite;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+.image-tooltip-container {
   flex: 0 0 auto;
-  width: 40px;
+  width: 70px;
+  text-align: center;
+  position: relative;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-/* Image style */
+/* Image styling */
 .tech-image {
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: auto;
   object-fit: contain;
-  transition: transform 0.3s;
-  user-select: none;  
-       
-  /* -webkit-user-drag: none; */
+  transition: opacity 0.3s;
 }
 
-/* Hover zoom */
+/* Hide image on hover */
 .image-tooltip-container:hover .tech-image {
-  transform: scale(1.10);
+  opacity: 0;
 }
 
-/* Tooltip styles */
+/* Tooltip styling */
 .image-tooltip {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: var(--body-color);
-  color: var(--title-color);
-  padding: 12px 25px;
+  color: #fff;
   font-size: var(--medium-font-size);
-  font-weight: normal;
+  background: var(--title-color);
+  padding: 6px 10px;
   border-radius: 4px;
-  white-space: nowrap;
   opacity: 0;
-  visibility: visible;
-  transition: opacity 0.3s ease;
-  z-index: 2;
-  width: 100%;
-  pointer-events: none;
-  height: 120%;
-  padding-right: 5rem;
+  transition: opacity 0.3s;
+  white-space: nowrap;
 }
 
-/* Tooltip on hover */
+/* Show tooltip on hover */
 .image-tooltip-container:hover .image-tooltip {
   opacity: 1;
-  visibility: visible;
-}
-
-/* Horizontal scroll container */
-.skills__scroll-container {
-  display: flex;
-  overflow-x: auto;
-  scroll-behavior: smooth;
-  -webkit-overflow-scrolling: touch;
-  padding: 20px 0;
-  gap: 35px;
-  touch-action: pan-x;
-}
-
-/* Drag feedback */
-.skills__scroll-container.dragging {
-  cursor: grabbing;
-}
-
-/* Scrollbar (optional) */
-.skills__scroll-container::-webkit-scrollbar {
-  height: 6px;
-}
-/* .skills__scroll-container::-webkit-scrollbar-thumb {
-  background: rgba(100, 100, 100, 0.5);
-  border-radius: 3px;
-} */
-
-.tech-image,
-.image-tooltip-container,
-.image-tooltip {
-  user-select: none;
-  -webkit-user-drag: none;
-}
-
-/* Allow horizontal overflow */
-body,
-html,
-.skills,
-.skills__container {
-  overflow-x: visible;
-}
-
-/* Responsive image sizing */
-@media screen and (min-width: 992px) {
-  .tech-image {
-    width: 100px;
-    height: auto;
-  }
-
-  .image-tooltip-container {
-    margin: 0 20px;
-  }
-}
-
-@media screen and (max-width: 768px) {
-  .tech-image {
-    width: 60px;
-  }
-
-  .image-tooltip-container {
-    margin: 0 12px;
-  }
-}
-
-@media screen and (max-width: 576px) {
-  .tech-image {
-    width: 60px;
-  }
-
-  .image-tooltip-container {
-    margin: 0 10px;
-  }
-}
-
-@media screen and (max-width: 350px) {
-  .tech-image {
-    width: 40px;
-  }
 }
